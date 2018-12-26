@@ -17,5 +17,12 @@
         "psr-4": {
             "Rafwell\\LaravelFocusnfe\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rafwell\\LaravelFocusnfe\\FocusnfeServiceProvider"
+            ]
+        }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 return [
 	'sandbox'=>env('APP_ENV')!='production' ? true : false, //true = homologação, false = produção
-    'ref'=>env('FOCUSNFE_REF'),
     'login'=>env('FOCUSNFE_LOGIN'),
+    'login_sandbox'=>env('FOCUSNFE_LOGIN_SANBOX'),
     'password'=>env('FOCUSNFE_PASSWORD'),
 ];
