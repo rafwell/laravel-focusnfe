@@ -15,13 +15,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "Rafwell\\LaravelFocusnfe\\": "src/"
+            "Rafwell\\Focusnfe\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Rafwell\\LaravelFocusnfe\\FocusnfeServiceProvider"
+                "Rafwell\\Focusnfe\\FocusnfeServiceProvider"
             ]
         }
     }
