@@ -2,13 +2,17 @@
 
 namespace Rafwell\Focusnfe;
 
+use Rafwell\Focusnfe\Exceptions\FocusnfeInvalidRequest;
+
 class NFSe{    
     use FocusnfeContract;
     
-    public function enviar(array $data):FocusnfeResponse{
+    public function enviar($ref, array $data):FocusnfeResponse{
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $this->getServer()."/v2/nfse?ref=" . $data['id']);
+        $url = $this->getServer()."/v2/nfse?ref=" . $ref;
+
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
@@ -17,7 +21,23 @@ class NFSe{
         $body = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         
-        $response = new FocusnfeResponse($body, $http_code);
+        if($http_code!=202){
+            $arr = json_decode($body, true);
+            $msg = 'Erro';
+            if(isset($arr['codigo']))
+                $msg .= 'código '.$arr['codigo'];
+            
+            if(isset($arr['mensagem']))
+                $msg .= ' : '.$arr['mensagem'];
+
+            if($msg=='Erro'){
+                $msg = htmlentities($body);
+            }
+
+            throw new FocusnfeInvalidRequest($msg);
+        }
+
+        $response = new FocusnfeResponse(json_decode($body, true), $http_code);
 
         return $response;
     }
