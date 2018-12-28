@@ -37,7 +37,7 @@ class NFSe{
             throw new FocusnfeInvalidRequest($msg);
         }
 
-        $response = new FocusnfeResponse(json_decode($body, true), $http_code);
+        $response = new FocusnfeResponse($body, $http_code);
 
         return $response;
     }
