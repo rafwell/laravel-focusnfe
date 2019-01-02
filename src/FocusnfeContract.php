@@ -6,7 +6,7 @@ trait FocusnfeContract
     protected $_config;
 
     protected $server = [
-        'producao'=>'https://api.focusnfe.com.brs',
+        'producao'=>'https://api.focusnfe.com.br',
         'homologacao'=>'http://homologacao.acrasnfe.acras.com.br'
     ];
 
@@ -20,7 +20,7 @@ trait FocusnfeContract
         return $this;
     }
 
-    public function getServer(){
+    public function getServer():string{
         if($this->_config['sandbox'])
             return $this->server['homologacao'];
         else
