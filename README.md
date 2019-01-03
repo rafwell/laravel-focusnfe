@@ -9,7 +9,7 @@ Aceitamos PR que venham a incluir mais abstrações como a NFe, Manifestação d
 Caso encontre algum problema, abra um issue para discussão.
 
 # Instalação
-Execute `composer require rafwell/laravel-focusnfe^1.0`
+Execute `composer require rafwell/laravel-focusnfe "^1.0"`
 
 Caso esteja usando laravel 5.5 nosso pacote será automaticamente descoberto. Caso contrário, adicione nosso provider ao seu config/app.php `Rafwell\Focusnfe\FocusnfeServiceProvider::class`
 
@@ -29,6 +29,7 @@ Tudo pronto para começar.
 
 # Exemplo NFSe
 Adicione a dependência ao seu controller ou repositório `use Rafwell\Focusnfe\NFSe;`
+Emissão em produção/homologação são controladas pela variável de ambiente no .env `APP_ENV` então se `env('APP_ENV')=='production'` usaremos o servidor de produção. Se não, usaremos o servidor de homologação.
 
 ### Emitir
 Siga a documentação do focusnfe para montar o seu array `$data`.
