@@ -5,7 +5,7 @@
     "require": {
         "php": "^7.0"
     },
-    "license": "gpl",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Rafael Souza",
