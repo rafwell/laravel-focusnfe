@@ -3,10 +3,9 @@
     "description": "Integração Laravel com FocusNFE para emissão de documentos fiscais.",
     "type": "library",
     "require": {
-        "php": "^7.0",
-        "ixudra/curl": "6.*"
+        "php": "^7.0"
     },
-    "license": "GNU",
+    "license": "gpl",
     "authors": [
         {
             "name": "Rafael Souza",
