@@ -7,6 +7,7 @@ use \Illuminate\Http\Response;
 class FocusnfeResponse extends Response{
     
     public function setContent($content){
+        
         $arr = json_decode($content, true);
         
         foreach($arr as $k=>$i){
@@ -16,7 +17,7 @@ class FocusnfeResponse extends Response{
         parent::setContent($content);
     }
 
-    public function getContent()
+    public function getContent():array
     {
         $res = parent::getContent();
         return json_decode($res, true);
