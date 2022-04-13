@@ -188,7 +188,7 @@ class NFe
         $body = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if ($http_code != 202) {
+        if ($http_code != 200) {
             $arr = json_decode($body, true);
             $msg = 'Erro';
             if (isset($arr['codigo']))
