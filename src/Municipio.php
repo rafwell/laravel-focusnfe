@@ -56,7 +56,7 @@ class Municipio{
     public static function listar($pagina = 0):array{
         $instance = new self;
         $response = $instance->enviar('/', $pagina);
-        return  $response->getContent();
+        return $response->getValues();
         
     }
 
@@ -68,7 +68,7 @@ class Municipio{
         $instance = new self;
         $response = $instance->enviar("/{$municipio_cod_ibge}");
 
-        return  $response->getContent();
+        return $response->getValues();
         
     }
 
@@ -80,7 +80,7 @@ class Municipio{
         $instance = new self;
         $response = $instance->enviar("/{$municipio_cod_ibge}/itens_lista_servico", $pagina);
 
-        return  $response->getContent();
+        return $response->getValues();
         
     }
 
@@ -95,7 +95,7 @@ class Municipio{
 
         $response = $instance->enviar( $uri );
 
-        return  $response->getContent();
+        return $response->getValues();
         
     }
 
@@ -107,7 +107,7 @@ class Municipio{
         $instance = new self;
         $response = $instance->enviar("/{$municipio_cod_ibge}/codigos_tributarios_municipio", $pagina);
 
-        return  $response->getContent();
+        return $response->getValues();
         
     }
 
@@ -120,7 +120,7 @@ class Municipio{
         $instance = new self;
         $response = $instance->enviar("/{$municipio_cod_ibge}/codigos_tributarios_municipio/{$codTributario}");
 
-        return  $response->getContent();
+        return $response->getContegetValuesnt();
         
     }
 }

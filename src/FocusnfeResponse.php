@@ -4,20 +4,22 @@ namespace Rafwell\Focusnfe;
 
 use \Illuminate\Http\Response;
 
-class FocusnfeResponse extends Response{
-    
-    public function setContent($content){
-        
+class FocusnfeResponse extends Response
+{
+
+    public function setValues($content)
+    {
+
         $arr = json_decode($content, true);
-        
-        foreach($arr as $k=>$i){
+
+        foreach ($arr as $k => $i) {
             $this->$k = $i;
         }
-        
-        parent::setContent($content);
+
+        parent::getContent($content);
     }
 
-    public function getContent():array
+    public function getValues(): array
     {
         $res = parent::getContent();
         return json_decode($res, true);
