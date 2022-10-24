@@ -5,8 +5,15 @@ Integração Laravel com a api focus nfe para emissão de documentos fiscais.
 Ao usar este pacote você se responsabiliza pelos documentos fiscais emitidos. Não temos controle nenhum sobre a veracidade das informações ou cálculos de impostos, ou validações quaisquer. Este pacote é apenas uma abstração da documentação https://focusnfe.com.br/doc para utilização em framework Laravel. Se você não concorda com isso, por favor não utilize este pacote.
 
 ## Desenvolvimento necessário
-Aceitamos PR que venham a incluir mais abstrações como a NFe, Manifestação da NFe, NFCe, etc.
+Aceitamos PR que venham a incluir mais abstrações como, Manifestação da NFe, NFCe, etc.
 Caso encontre algum problema, abra um issue para discussão.
+
+## Endpointes disponíveis
+* NFe
+* NFSe
+* Revenda
+* Webhook
+* Municípios
 
 # Instalação
 Execute `composer require rafwell/laravel-focusnfe "^1.0"`
