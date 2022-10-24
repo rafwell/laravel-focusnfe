@@ -9,18 +9,54 @@ class Revenda
 
     use FocusnfeContract;
 
+    public function __construct($config = [])
+    {
+        //merge the configurations
+        $this->_config = include __DIR__ . '/../config/focusnfe.php';
+        $this->_config = array_merge($this->_config, config('focusnfe'));
+        $this->_config = array_merge($this->_config, $config);
+
+        return $this;
+    }
+
+    /**
+     * Monta url da api. Obs: Não existe url de homologação para este endpoint, para testar um novo (post) cadastro, usa-se o parâmetro ?dry_run=1
+     * @return string
+     */
+    protected function getUrl(int $id = null, $offset = null)
+    {
+        $url = 'https://api.focusnfe.com.br/v2/empresas/';
+
+        if ($id) {
+            $url .= $id;
+        }
+
+        $params = [];
+
+        if ($offset) {
+            $params[] = 'offset=' . $offset;
+        }
+
+        if ($this->_config['sandbox']) {
+            $params[] = 'dry_run=1';
+        }
+
+        $search = implode('&', $params);
+
+        if ($search) {
+            $url .= '?' . $search;
+        }
+
+        return $url;
+    }
+
     protected function enviar(int $id = null, array $arr, $type, $offset = null): FocusnfeResponse
     {
         $ch = curl_init();
 
-        $offset = $offset ? "?offset={$offset}" : '';
+        $offset = $offset ? "&offset={$offset}" : '';
 
-        if (!$id) {
-            $url = $this->getServer() . '/v2/empresas' . ($offset ? $offset : '');
-            //$url = $this->getServer() . '/v2/empresas?dry_run=1';
-        } else {
-            $url = $this->getServer() . '/v2/empresas/' . $id;
-        }
+        $url = $this->getUrl($id, $offset);
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
