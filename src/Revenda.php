@@ -9,14 +9,15 @@ class Revenda
 
     use FocusnfeContract;
 
-    protected function enviar(int $id, array $arr, $type, $offset = null): FocusnfeResponse
+    protected function enviar(int $id = null, array $arr, $type, $offset = null): FocusnfeResponse
     {
         $ch = curl_init();
 
         $offset = $offset ? "?offset={$offset}" : '';
 
-        if (empty($id)) {
-            $url = $this->getServer() . '/v2/empresas' . $offset;
+        if (!$id) {
+            $url = $this->getServer() . '/v2/empresas' . ($offset ? $offset : '');
+            //$url = $this->getServer() . '/v2/empresas?dry_run=1';
         } else {
             $url = $this->getServer() . '/v2/empresas/' . $id;
         }
@@ -30,8 +31,9 @@ class Revenda
         $body = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if ($http_code != 200) {
+        if ($http_code > 201) {
             $response = json_decode($body, true);
+
             $msg = 'Erro';
             if (isset($response['codigo']))
                 $msg .= 'código ' . $response['codigo'];
@@ -39,12 +41,16 @@ class Revenda
             if (isset($response['mensagem']))
                 $msg .= ' : ' . $response['mensagem'];
 
-            if ($msg == 'Erro') {
-                $msg = htmlentities($body);
+            if (isset($response['erros']))
+                $msg .= ' : ' . $response['erros'][0]['mensagem'] . ', campo: ' . $response['erros'][0]['campo'];
+
+            if ($msg == 'Erro ') {
+                $msg .= htmlentities($body);
             }
 
             throw new FocusnfeInvalidRequest($msg);
         }
+
 
         $response = new FocusnfeResponse($body, $http_code);
 
@@ -58,7 +64,7 @@ class Revenda
     public static function cadastrar($arr): array
     {
         $instance = new self;
-        $response = $instance->enviar(0, $arr, 'POST');
+        $response = $instance->enviar(null, $arr, 'POST');
 
         return  $response->getContent();
     }
