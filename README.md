@@ -8,7 +8,7 @@ Ao usar este pacote você se responsabiliza pelos documentos fiscais emitidos. N
 Aceitamos PR que venham a incluir mais abstrações como, Manifestação da NFe, NFCe, etc.
 Caso encontre algum problema, abra um issue para discussão.
 
-## Endpointes disponíveis
+## Endpoints disponíveis
 * NFe
 * NFSe
 * Revenda
