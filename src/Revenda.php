@@ -102,7 +102,7 @@ class Revenda
         $instance = new self;
         $response = $instance->enviar(null, $arr, 'POST');
 
-        return  $response->getContent();
+        return  $response->getValues();
     }
 
     /**
@@ -114,7 +114,7 @@ class Revenda
         $instance = new self;
         $response = $instance->enviar(0, [], 'GET', $offset);
 
-        return  $response->getContent();
+        return  $response->getValues();
     }
 
     /**
@@ -126,7 +126,7 @@ class Revenda
         $instance = new self;
         $response = $instance->enviar($id, [], 'GET');
 
-        return  $response->getContent();
+        return  $response->getValues();
     }
 
     /**
@@ -138,7 +138,7 @@ class Revenda
         $instance = new self;
         $response = $instance->enviar($id, $arr, 'PUT');
 
-        return  $response->getContent();
+        return  $response->getValues();
     }
 
     /**
@@ -150,6 +150,6 @@ class Revenda
         $instance = new self;
         $response = $instance->enviar($id, [], 'DELETE');
 
-        return  $response->getContent();
+        return  $response->getValues();
     }
 }
