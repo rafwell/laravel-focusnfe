@@ -6,7 +6,7 @@ use \Illuminate\Http\Response;
 
 class FocusnfeResponse extends Response{
     
-    public function setContent($content){
+    public function setValues($content){
         
         $arr = json_decode($content, true);
         
@@ -14,10 +14,10 @@ class FocusnfeResponse extends Response{
             $this->$k = $i;
         }
         
-        parent::setContent($content);
+        parent::setValues($content);
     }
 
-    public function getContent():array
+    public function getValues():array
     {
         $res = parent::getContent();
         return json_decode($res, true);
