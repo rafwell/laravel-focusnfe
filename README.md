@@ -16,7 +16,12 @@ Caso encontre algum problema, abra um issue para discussão.
 * Municípios
 
 # Instalação
+
+## Para Lavavel >=5.4 && <9
 Execute `composer require rafwell/laravel-focusnfe "^1.0"`
+
+## Para Lavavel >=9
+Execute `composer require rafwell/laravel-focusnfe "^2.0"`
 
 Caso esteja usando laravel 5.5 nosso pacote será automaticamente descoberto. Caso contrário, adicione nosso provider ao seu config/app.php `Rafwell\Focusnfe\FocusnfeServiceProvider::class`
 
