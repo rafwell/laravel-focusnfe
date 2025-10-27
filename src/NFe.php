@@ -4,15 +4,13 @@ namespace Rafwell\Focusnfe;
 
 use Rafwell\Focusnfe\Exceptions\FocusnfeInvalidRequest;
 
-class NFe
-{
+class NFe {
     use FocusnfeContract;
 
     /**
      * Envia uma NFE para emissão
      */
-    public function enviarNfe($ref, array $data): FocusnfeResponse
-    {
+    public function enviarNfe($ref, array $data): FocusnfeResponse {
         $ch = curl_init();
 
         $url = $this->getServer() . '/v2/nfe?ref=' . $ref;
@@ -50,8 +48,7 @@ class NFe
     /**
      * Consulta uma NFE
      */
-    public function consultar($ref, $completa = 0): FocusnfeResponse
-    {
+    public function consultar($ref, $completa = 0): FocusnfeResponse {
         $ch = curl_init();
 
         $url = $this->getServer() . '/v2/nfe/' . $ref . '?completa=' . $completa;
@@ -88,8 +85,7 @@ class NFe
     /**
      * Cancela uma NFE
      */
-    public function cancelar($ref, string $justificativa): FocusnfeResponse
-    {
+    public function cancelar($ref, string $justificativa): FocusnfeResponse {
         $ch = curl_init();
 
         $url = $this->getServer() . '/v2/nfe/' . $ref;
@@ -131,8 +127,7 @@ class NFe
      * Reenvia por e-mail uma NFE
      */
 
-    public function email($ref, array $emails)
-    {
+    public function email($ref, array $emails) {
         $ch = curl_init();
 
         $url = $this->getServer() . '/v2/nfe/' . $ref . '/email';
@@ -173,8 +168,7 @@ class NFe
     /**
      * Envia uma carta de correção eletrônica para uma NFE
      */
-    public function enviarCce($ref, array $data): FocusnfeResponse
-    {
+    public function enviarCce($ref, array $data): FocusnfeResponse {
         $ch = curl_init();
 
         $url = $this->getServer() . '/v2/nfe/' . $ref . '/carta_correcao';
@@ -209,8 +203,7 @@ class NFe
         return $response;
     }
 
-    public function inutilizar(array $data): FocusnfeResponse
-    {
+    public function inutilizar(array $data): FocusnfeResponse {
         $ch = curl_init();
 
         $url = $this->getServer() . '/v2/nfe/inutilizacao';
@@ -245,8 +238,7 @@ class NFe
         return $response;
     }
 
-    public function preview(array $data): FocusnfeResponse
-    {
+    public function preview(array $data): FocusnfeResponse {
         $ch = curl_init();
 
         $url = $this->getServer() . '/v2/nfe/danfe';
