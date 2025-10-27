@@ -87,7 +87,7 @@ class NFSe {
 
         $ambiente = $ambiente ?? AmbienteNfse::default();
 
-        $url = $this->getServer() . $ambiente->endpoint() . '/' . $ref . '/cancelar';
+        $url = $this->getServer() . $ambiente->endpoint()  . $ref;
 
         $ch = curl_init();
 
