@@ -2,17 +2,14 @@
 
 namespace Rafwell\Focusnfe;
 
-use Rafwell\Focusnfe\Enums\AmbienteNfse;
 use Rafwell\Focusnfe\Exceptions\FocusnfeInvalidRequest;
 
 class NFSe {
     use FocusnfeContract;
 
-    public function enviar(string $ref, array $data, ?AmbienteNfse $ambiente = null): FocusnfeResponse {
+    public function enviar(string $ref, array $data): FocusnfeResponse {
 
-        $ambiente = $ambiente ?? AmbienteNfse::default();
-
-        $url = $this->getServer() . $ambiente->endpoint() . '?ref=' . $ref;
+        $url = $this->getServer() . '?ref=' . $ref;
 
         $ch = curl_init();
 
@@ -46,11 +43,9 @@ class NFSe {
         return $response;
     }
 
-    public function consultar(string $ref, ?AmbienteNfse $ambiente = null): FocusnfeResponse {
+    public function consultar(string $ref): FocusnfeResponse {
 
-        $ambiente = $ambiente ?? AmbienteNfse::default();
-
-        $url = $this->getServer() . $ambiente->endpoint() . '/' . $ref . '.json';
+        $url = $this->getServer() . '/' . $ref . '.json';
 
         $ch = curl_init();
 
@@ -83,11 +78,9 @@ class NFSe {
         return $response;
     }
 
-    public function cancelar(string $ref, string $justificativa, ?AmbienteNfse $ambiente = null): FocusnfeResponse {
+    public function cancelar(string $ref, string $justificativa): FocusnfeResponse {
 
-        $ambiente = $ambiente ?? AmbienteNfse::default();
-
-        $url = $this->getServer() . $ambiente->endpoint()  . $ref;
+        $url = $this->getServer() . '/' . $ref;
 
         $ch = curl_init();
 
@@ -128,7 +121,7 @@ class NFSe {
 
         $ch = curl_init();
 
-        $url = $this->getServer() . '/v2/nfse/' . $ref . '/email';
+        $url = $this->getServer() . '/' . $ref . '/email';
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
