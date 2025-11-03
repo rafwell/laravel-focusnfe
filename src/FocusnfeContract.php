@@ -32,13 +32,17 @@ trait FocusnfeContract
 
     public function getServer(): string
     {
-
-        $ambiente = $this->getNfseMunicipalNacional();
-
         if ($this->_config['sandbox'])
-            return $this->server['homologacao'] . $ambiente;
+            return $this->server['homologacao'];
         else
-            return $this->server['producao'] . $ambiente;
+            return $this->server['producao'];
+    }
+
+    public function getServerUri()
+    {
+        $server = $this->getServer();
+        $ambiente = $this->getNfseMunicipalNacional();
+        return $server . $ambiente;
     }
 
     public function getLogin()

@@ -4,12 +4,14 @@ namespace Rafwell\Focusnfe;
 
 use Rafwell\Focusnfe\Exceptions\FocusnfeInvalidRequest;
 
-class NFSe {
+class NFSe
+{
     use FocusnfeContract;
 
-    public function enviar(string $ref, array $data): FocusnfeResponse {
+    public function enviar(string $ref, array $data): FocusnfeResponse
+    {
 
-        $url = $this->getServer() . '?ref=' . $ref;
+        $url = $this->getServerUri() . '?ref=' . $ref;
 
         $ch = curl_init();
 
@@ -43,9 +45,10 @@ class NFSe {
         return $response;
     }
 
-    public function consultar(string $ref): FocusnfeResponse {
+    public function consultar(string $ref): FocusnfeResponse
+    {
 
-        $url = $this->getServer() . '/' . $ref . '.json';
+        $url = $this->getServerUri() . '/' . $ref . '.json';
 
         $ch = curl_init();
 
@@ -78,9 +81,10 @@ class NFSe {
         return $response;
     }
 
-    public function cancelar(string $ref, string $justificativa): FocusnfeResponse {
+    public function cancelar(string $ref, string $justificativa): FocusnfeResponse
+    {
 
-        $url = $this->getServer() . '/' . $ref;
+        $url = $this->getServerUri() . '/' . $ref;
 
         $ch = curl_init();
 
@@ -117,11 +121,12 @@ class NFSe {
         return $response;
     }
 
-    public function email($ref, array $emails) {
+    public function email($ref, array $emails)
+    {
 
         $ch = curl_init();
 
-        $url = $this->getServer() . '/' . $ref . '/email';
+        $url = $this->getServerUri() . '/' . $ref . '/email';
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
