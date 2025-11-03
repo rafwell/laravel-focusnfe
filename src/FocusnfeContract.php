@@ -2,24 +2,26 @@
 
 namespace Rafwell\Focusnfe;
 
-trait FocusnfeContract {
+trait FocusnfeContract
+{
 
     protected $_config;
 
     protected $server =
     [
-        'producao'    => 'https://api.focusnfe.com.br/v2/',
-        'homologacao' => 'https://homologacao.focusnfe.com.br/v2/'
+        'producao'    => 'https://api.focusnfe.com.br',
+        'homologacao' => 'https://homologacao.focusnfe.com.br'
     ];
 
     protected $ambiente =
     [
-        'municipal' => 'nfse',
-        'nacional'  => 'nfsen'
+        'municipal' => '/v2/nfse',
+        'nacional'  => '/v2/nfsen'
     ];
 
 
-    public function __construct($config = []) {
+    public function __construct($config = [])
+    {
         //merge the configurations
         $this->_config = include __DIR__ . '/../config/focusnfe.php';
         $this->_config = array_merge($this->_config, config('focusnfe'));
@@ -28,7 +30,8 @@ trait FocusnfeContract {
         return $this;
     }
 
-    public function getServer(): string {
+    public function getServer(): string
+    {
 
         $ambiente = $this->getNfseMunicipalNacional();
 
@@ -38,18 +41,21 @@ trait FocusnfeContract {
             return $this->server['producao'] . $ambiente;
     }
 
-    public function getLogin() {
+    public function getLogin()
+    {
         if ($this->_config['sandbox'])
             return $this->_config['login_sandbox'];
         else
             return $this->_config['login'];
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->_config['password'];
     }
 
-    public function getNfseMunicipalNacional(): string {
+    public function getNfseMunicipalNacional(): string
+    {
 
         if (!isset($this->_config['ambiente']))
             return $this->ambiente['municipal'];
